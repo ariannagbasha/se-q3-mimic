@@ -4,7 +4,8 @@
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
-
+import random
+import sys
 """
 Mimic exercise
 
@@ -20,56 +21,31 @@ You can try adding in line breaks around 70 columns so the output looks
 better.
 """
 
-__author__ = "ariannagbasha, Sondos, and Shanquel"
-__references__ = # https://www.programmersought.com/article/74581508841/
-
-
-import random
-import sys
+__author__ = "ariannagbasha, collabs: Sondos, and collabs: Shanquel"
+# __references__ =  https://www.programmersought.com/article/74581508841/
 
 
 def create_mimic_dict(filename):
-    """Returns a dict mapping each word to a list of words which follow it.
-    For example:
-        Input: "I am a software developer, and I don't care who knows"
-        Output:
-            {
-                "" : ["I"],
-                "I" : ["am", "don't"],
-                "am": ["a"],
-                "a": ["software"],
-                "software" : ["developer,"],
-                "developer," : ["and"],
-                "and" : ["I"],
-                "don't" : ["care"],
-                "care" : ["who"],
-                "who" : ["knows"]
-            }
-    """
     mimic_dict = dict()
     with open(filename) as f:
         words = f.read().split()
     previous_word = ''
     for word in words:
-        if not previous_word in mimic_dict:
-            mimic_dict[previous_word] = [word]
-        else:
+        if previous_word in mimic_dict:
             mimic_dict[previous_word].append(word)
+        else:
+            mimic_dict[previous_word] = [word]
         previous_word = word
     return mimic_dict
 
 
 def print_mimic_random(mimic_dict, num_words):
-    """Given a previously created mimic_dict and num_words,
-    prints random words from mimic_dict as follows:
-        - Use a start_word of '' (empty string)
-        - Print the start_word
-        - Look up the start_word in your mimic_dict and get its next-list
-        - Randomly select a new word from the next-list
-        - Repeat this process num_words times
-    """
-    # +++your code here+++
-    pass
+    start_word = ''
+    print(start_word)
+    for unused_i in range(num_words):
+        start_word = random.choice(mimic_dict.get(start_word))
+        print(start_word + ' ')
+        
 
 
 def main(args):
