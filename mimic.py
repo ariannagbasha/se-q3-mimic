@@ -41,15 +41,13 @@ def create_mimic_dict(filename):
 
 
 def print_mimic_random(mimic_dict, num_words):
-    start_word = '' 
+    start_word = ''
     for unused_i in range(num_words + 1):
-        print(start_word, end=" ") 
+        print(start_word, end=" ")
         next_word = mimic_dict.get(start_word)
         if next_word is None:
             next_word = mimic_dict['']
-        start_word = random.choice(next_word) 
-        
-        
+        start_word = random.choice(next_word)
 
 
 def main(args):
