@@ -23,6 +23,7 @@ better.
 
 __author__ = "ariannagbasha, collabs: Sondos, and collabs: Shanquel"
 # __references__ =  https://www.programmersought.com/article/74581508841/
+# Joe helped out too!
 
 
 def create_mimic_dict(filename):
@@ -40,11 +41,14 @@ def create_mimic_dict(filename):
 
 
 def print_mimic_random(mimic_dict, num_words):
-    start_word = ''
-    print(start_word)
-    for unused_i in range(num_words):
-        start_word = random.choice(mimic_dict.get(start_word))
-        print(start_word + ' ')
+    start_word = '' 
+    for unused_i in range(num_words + 1):
+        print(start_word, end=" ") 
+        next_word = mimic_dict.get(start_word)
+        if next_word is None:
+            next_word = mimic_dict['']
+        start_word = random.choice(next_word) 
+        
         
 
 
